@@ -1,14 +1,56 @@
-import {StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native"
+import {FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native"
 import { Product } from "../components/Product";
 
 
 export  function Home(){
+    const products = [
+        "Arroz",
+        "Feijão",
+        "Macarrão",
+        "Farinha de Trigo",
+        "Açúcar",
+        "Sal",
+        "Óleo de Soja",
+        "Leite",
+        "Ovos",
+        "Pão",
+        "Café",
+        "Chá",
+        "Manteiga",
+        "Queijo",
+        "Presunto",
+        "Frango",
+        "Carne Bovina",
+        "Peixe",
+        "Frutas",
+        "Legumes",
+        "Verduras",
+        "Batata",
+        "Cebola",
+        "Alho",
+        "Tomate",
+        "Cenoura",
+        "Banana",
+        "Maçã",
+        "Laranja",
+        "Uva",
+        "Refrigerante",
+        "Suco",
+        "Água Mineral",
+        "Biscoitos",
+        "Cereais",
+        "Molho de Tomate",
+        "Condimentos",
+        "Iogurte",
+        "Sorvete",
+        "Chocolate"
+      ];
     function handleAddProduct(){
 
     }
 
     function handleProductRemove(name : string){
-        console.log("Você clicou no botão de remover produto")
+        console.log(`Você clicou no botão de remover produto ${name}`)
     }
     return (
         <View style = {styles.container}>
@@ -19,7 +61,7 @@ export  function Home(){
              <TextInput
              style={styles.input}
              placeholder= "Nome do Produto"
-             placeholderTextColor= "#BDBABA"
+             placeholderTextColor= "#BDBABA" 
              keyboardType="default"
              />
 
@@ -29,12 +71,22 @@ export  function Home(){
             </View>
 
             <Text style={styles.listTitle}>Compras pendente</Text>
-
-            <View style={styles.list}> 
-            {/* <Text style={styles.listEmptyText}>Comprou todos os produtos? Adicione produtos a sua lista de compras</Text> */}
-             <Product name="iphone" onRemove={() => handleProductRemove("iphone")}/>
+            
+              <FlatList
+                data={products} 
+                keyExtractor={(item) => item}
+                contentContainerStyle={styles.list}
+                renderItem={({item}) => <Product name={item} onRemove={() => handleProductRemove(item)}/>} 
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={() => (
+                    <Text style={styles.listEmptyText}>
+                        Comprou todos os produtos? Adicione produtos a sua lista de compras
+                    </Text>
+                )}
+            
+                
+              />
             </View>
-        </View>
     )
 }
 

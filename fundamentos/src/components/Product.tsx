@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomLeftRadius: 5,
         borderTopLeftRadius: 5,
+        marginBottom: 8,
     },
     buttonText: {
         fontSize: 24,
@@ -49,6 +50,6 @@ const styles = StyleSheet.create({
         lineHeight: 19.2,
         marginLeft: 16,
         marginRight: 16,
-        backgroundColor: 'green'
+        // backgroundColor: 'green'
     }
 })
