@@ -1,4 +1,4 @@
-import {FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native"
+import {Alert, FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native"
 
 import { Product } from "../../components/Product";
 
@@ -48,11 +48,22 @@ export  function Home(){
         "Chocolate"
       ];
     function handleAddProduct(){
-
+        if (products.includes("Arroz")){
+        Alert.alert("Remover", "Já existe um produto na lista com esse nome.");
+        }
     }
 
     function handleProductRemove(name : string){
-        console.log(`Você clicou no botão de remover produto ${name}`)
+        console.log("Remover", `deseja remover o produto ${name}`, [
+            {
+                text: 'Sim',
+                onPress: () => Alert.alert("Deletado")
+            },
+            {
+                text: 'Não',
+                styles: 'cancel' 
+            }
+        ]);
     }
     return (
         <View style = {styles.container}>

@@ -50,6 +50,5 @@ const styles = StyleSheet.create({
         lineHeight: 19.2,
         marginLeft: 16,
         marginRight: 16,
-        // backgroundColor: 'green'
     }
 })
