@@ -1,67 +1,30 @@
-import {Alert, FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native"
-
+import {FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native"
 import { Product } from "../../components/Product";
-
+import { Alert } from "react-native";
 import { styles } from "./styles";
+import { useState } from "react";
 
 export  function Home(){
-    const products = [
-        "Arroz",
-        "Feijão",
-        "Macarrão",
-        "Farinha de Trigo",
-        "Açúcar",
-        "Sal",
-        "Óleo de Soja",
-        "Leite",
-        "Ovos",
-        "Pão",
-        "Café",
-        "Chá",
-        "Manteiga",
-        "Queijo",
-        "Presunto",
-        "Frango",
-        "Carne Bovina",
-        "Peixe",
-        "Frutas",
-        "Legumes",
-        "Verduras",
-        "Batata",
-        "Cebola",
-        "Alho",
-        "Tomate",
-        "Cenoura",
-        "Banana",
-        "Maçã",
-        "Laranja",
-        "Uva",
-        "Refrigerante",
-        "Suco",
-        "Água Mineral",
-        "Biscoitos",
-        "Cereais",
-        "Molho de Tomate",
-        "Condimentos",
-        "Iogurte",
-        "Sorvete",
-        "Chocolate"
-      ];
+    const [productName, setProductName] = useState(""); // 'usestate()' Controla o estado da variavel
+    const [products, setProducts] = useState<string[]>([])
+
     function handleAddProduct(){
-        if (products.includes("Arroz")){
-        Alert.alert("Remover", "Já existe um produto na lista com esse nome.");
+        if (products.includes(productName)){
+        Alert.alert("Produto já cadastrado", "Já existe um produto na lista com esse nome");
         }
+
+        setProducts([... products, productName])
     }
 
     function handleProductRemove(name : string){
-        console.log("Remover", `deseja remover o produto ${name}`, [
+        Alert.alert("Remover", `deseja remover o produto ${name}?`, [
             {
                 text: 'Sim',
-                onPress: () => Alert.alert("Deletado")
+                onPress: () => setProducts(products.filter(product => product !== name))
             },
             {
                 text: 'Não',
-                styles: 'cancel' 
+                style: 'cancel' 
             }
         ]);
     }
@@ -76,6 +39,8 @@ export  function Home(){
              placeholder= "Nome do Produto"
              placeholderTextColor= "#BDBABA" 
              keyboardType="default"
+             onChangeText={setProductName}
+             value={productName}
              />
 
              <TouchableOpacity style={styles.button} onPress={handleAddProduct}>
