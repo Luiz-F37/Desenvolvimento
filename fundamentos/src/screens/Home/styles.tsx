@@ -63,6 +63,6 @@ export const styles = StyleSheet.create({
     },
     list: {
         flexGrow: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
     }
 });

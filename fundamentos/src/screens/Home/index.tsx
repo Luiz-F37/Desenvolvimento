@@ -7,14 +7,15 @@ import { useState } from "react";
 export  function Home(){
     const [productName, setProductName] = useState(""); // 'usestate()' Controla o estado da variavel
     const [products, setProducts] = useState<string[]>([])
-
+ 
     function handleAddProduct(){
         if (products.includes(productName)){
-        Alert.alert("Produto já cadastrado", "Já existe um produto na lista com esse nome");
+        return Alert.alert("Produto já cadastrado", "Já existe um produto na lista com esse nome");
         }
 
-        setProducts([... products, productName])
-    }
+        setProducts([... products, productName]);
+        setProductName("");
+    } 
 
     function handleProductRemove(name : string){
         Alert.alert("Remover", `deseja remover o produto ${name}?`, [
