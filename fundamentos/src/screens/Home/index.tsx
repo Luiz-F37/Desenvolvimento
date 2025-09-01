@@ -11,8 +11,8 @@ export  function Home(){
     function handleAddProduct(){
         if (products.includes(productName)){
         return Alert.alert("Produto já cadastrado", "Já existe um produto na lista com esse nome");
-        }
-
+        } 
+    
         setProducts([... products, productName]);
         setProductName("");
     } 
